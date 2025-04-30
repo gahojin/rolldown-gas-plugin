@@ -1,0 +1,72 @@
+{
+  "name": "@gahojin-inc/rolldown-gas-plugin",
+  "version": "0.0.1",
+  "description": "Rolldown plugin for Google App Script",
+  "author": "GAHOJIN, Inc.",
+  "license": "Apache-2.0",
+  "sideEffects": false,
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gahojin/rolldown-gas-plugin.git"
+  },
+  "files": ["dist"],
+  "keywords": ["rolldown", "gas", "google-app-script"],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "preinstall": "pnpm dlx only-allow pnpm",
+    "clean": "rimraf dist",
+    "prebuild": "rimraf dist",
+    "build": "rolldown -c",
+    "prepublish": "pnpm run build",
+    "lint": "biome check --write .",
+    "check": "tsc",
+    "check:packagejson": "pnpm attw --profile node16 --pack .",
+    "test": "vitest --watch",
+    "test:unit": "vitest --passWithNoTests --run --coverage",
+    "bench": "vitest bench",
+    "ncu": "npm-check-updates -u"
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.cts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "require": "./dist/index.cjs"
+      }
+    }
+  },
+  "dependencies": {
+    "gas-entry-generator": "2.6.0"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "0.17.4",
+    "@biomejs/biome": "1.9.4",
+    "@commitlint/cli": "19.8.0",
+    "@commitlint/config-conventional": "19.8.0",
+    "@date-fns/tz": "1.2.0",
+    "@fast-check/vitest": "0.2.1",
+    "@types/node": "20.17.32",
+    "@vitest/coverage-v8": "3.1.2",
+    "jest-extended": "4.0.2",
+    "lefthook": "1.11.12",
+    "npm-check-updates": "18.0.1",
+    "rimraf": "6.0.1",
+    "rolldown": "1.0.0-beta.8",
+    "typescript": "5.8.3",
+    "unplugin-isolated-decl": "0.13.10",
+    "vite-tsconfig-paths": "5.1.4",
+    "vitest": "3.1.2"
+  },
+  "packageManager": "pnpm@10.10.0"
+}
