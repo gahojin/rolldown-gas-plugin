@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://json.schemastore.org/lefthook.json
+# vim: set ts=2 sw=2 tw=0 fo=cnqoj
+
+assert_lefthook_installed: true
+skip_lfs: true
+
+commit-msg:
+  parallel: true
+  commands:
+    lint:
+      run: pnpm exec commitlint --edit {1}
+
+pre-commit:
+  parallel: true
+  commands:
+    lint:
+      glob: "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
+      run: pnpm exec biome check --write {staged_files}
+      stage_fixed: true
+      skip:
+        - merge
+        - rebase
+
