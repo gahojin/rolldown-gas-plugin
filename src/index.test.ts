@@ -19,7 +19,6 @@ describe('test', async () => {
       output: {
         name: 'a',
         format: 'iife',
-        target: 'es2020',
         file: outfilePath,
         minify: false,
       },
@@ -71,7 +70,6 @@ this.main3 = a.main3;`)
       input: resolve(__dirname, './fixtures/main.ts'),
       output: {
         format: 'iife',
-        target: 'es2020',
         file: outfilePath,
         minify: true,
       },
