@@ -30,8 +30,9 @@ export default defineConfig([
     output: [
       {
         format: 'iife',
-        target: 'es2020',
-        file: './dist/main.js',
+        name: '_',
+        entryFileNames: '[name].js',
+        minify: false,
       },
     ],
     plugins: [gasPlugin()],
