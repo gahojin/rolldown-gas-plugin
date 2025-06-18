@@ -1,20 +1,15 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-  "organizeImports": {
-    "enabled": true
-  },
+  "$schema": "https://biomejs.dev/schemas/2.0.0/schema.json",
+  "assist": { "actions": { "source": { "organizeImports": "on" } } },
   "linter": {
     "enabled": true,
     "rules": {
-      "all": true,
       "complexity": {
-        "all": true,
         "noExcessiveCognitiveComplexity": "off",
         "noUselessLoneBlockStatements": "off",
         "useSimplifiedLogicExpression": "off"
       },
       "correctness": {
-        "all": true,
         "noNodejsModules": "off",
         "noUnusedImports": "error",
         "noUndeclaredVariables": "off",
@@ -23,39 +18,41 @@
         "useImportExtensions": "off"
       },
       "nursery": {
-        "all": true,
-        "noExportedImports": "off",
         "noSecrets": "off",
-        "useExplicitType": "off",
-        "useImportRestrictions": "off",
-        "useStrictMode": "off"
+        "useExplicitType": "off"
       },
       "style": {
-        "all": true,
-        "noNamespaceImport": "off",
         "useNamingConvention": "off",
-        "noDefaultExport": "off"
+        "noDefaultExport": "off",
+        "noParameterAssign": "error",
+        "useAsConstAssertion": "error",
+        "useDefaultParameterLast": "error",
+        "useEnumInitializers": "error",
+        "useSelfClosingElements": "error",
+        "useSingleVarDeclarator": "error",
+        "noUnusedTemplateLiteral": "error",
+        "useNumberNamespace": "error",
+        "noInferrableTypes": "error",
+        "noUselessElse": "error",
+        "noExportedImports": "off"
       },
       "suspicious": {
-        "all": true,
-        "noConsoleLog": "off",
         "noEmptyBlockStatements": "off",
         "noExplicitAny": "off",
-        "noConsole": "off"
+        "noConsole": "off",
+        "useStrictMode": "off"
       },
       "performance": {
-        "all": true,
         "noBarrelFile": "off",
-        "noReExportAll": "off"
+        "noReExportAll": "off",
+        "noNamespaceImport": "off"
       },
-      "security": {
-        "all": true
-      }
+      "security": {}
     },
-    "ignore": ["jest-extended.d.ts"]
+    "includes": ["**", "!**/jest-extended.d.ts"]
   },
   "files": {
-    "ignore": ["dist/*", "build/*", "coverage/*", ".tsup/*"]
+    "includes": ["**", "!**/dist/**/*", "!**/build/**/*", "!**/coverage/**/*", "!**/.tsup/**/*"]
   },
   "formatter": {
     "enabled": true,

@@ -10,8 +10,14 @@
     "type": "git",
     "url": "https://github.com/gahojin/rolldown-gas-plugin.git"
   },
-  "files": ["dist"],
-  "keywords": ["rolldown", "gas", "google-app-script"],
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "rolldown",
+    "gas",
+    "google-app-script"
+  ],
   "publishConfig": {
     "access": "public",
     "provenance": true
