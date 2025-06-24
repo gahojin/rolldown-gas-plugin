@@ -57,7 +57,7 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "0.18.2",
-    "@biomejs/biome": "2.0.0",
+    "@biomejs/biome": "2.0.4",
     "@commitlint/cli": "19.8.1",
     "@commitlint/config-conventional": "19.8.1",
     "@fast-check/vitest": "0.2.1",
@@ -67,7 +67,7 @@
     "lefthook": "1.11.14",
     "npm-check-updates": "18.0.1",
     "rimraf": "6.0.1",
-    "rolldown": "1.0.0-beta.18",
+    "rolldown": "1.0.0-beta.19",
     "typescript": "5.8.3",
     "unplugin-isolated-decl": "0.14.3",
     "vite-tsconfig-paths": "5.1.4",

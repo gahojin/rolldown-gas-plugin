@@ -6,6 +6,10 @@ updates:
       all:
         patterns:
           - "*"
+    ignore:
+      # git-auto-commit-action v6は壊れているようなので、一旦無視
+      - dependency-name: "stefanzweifel/git-auto-commit-action"
+        update-types: ["version-update:semver-major"]
     schedule:
       interval: "daily"
   - package-ecosystem: "npm"
@@ -15,7 +19,7 @@ updates:
         patterns:
           - "*"
     ignore:
-      # Node.jsはv20のままとする
+      # Node.jsのメジャーバージョンは変更しない
       - dependency-name: "@types/node"
         update-types: ["version-update:semver-major"]
     schedule:
