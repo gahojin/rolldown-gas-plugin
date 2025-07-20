@@ -88,4 +88,31 @@ this.main1 = _.main1;
 this.main2 = _.main2;
 this.main3 = _.main3;`)
   })
+
+  test('minify:true with name=a', async () => {
+    const outfilePath = resolve(distPath, 'test2.js')
+
+    await build({
+      input: resolve(__dirname, './fixtures/main.ts'),
+      output: {
+        name: 'a',
+        format: 'iife',
+        file: outfilePath,
+        minify: true,
+      },
+      plugins: [gasPlugin()],
+    })
+
+    const outfile = readFileSync(outfilePath, { encoding: 'utf8' })
+    expect(outfile).toEqual(`function main1() {
+}
+function main2() {
+}
+function main3() {
+}
+var a = (function(exports){let t=e=>e,n=()=>{console.log(t(\`hello world.\`))},r=(e,t)=>e+t,i=(e,t)=>e-t,a=()=>{console.log(t(\`1 + 2 = \${r(1,2)}\`))},o=()=>{console.log(t(\`3 - 1 = \${i(3,1)}\`))};return exports.main1=a,exports.main2=o,exports.main3=n,exports})({});
+this.main1 = a.main1;
+this.main2 = a.main2;
+this.main3 = a.main3;`)
+  })
 })
