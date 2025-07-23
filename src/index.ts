@@ -1,28 +1,41 @@
-import { generate } from 'gas-entry-generator'
 import type { Plugin } from 'rolldown'
 
-const exportsRegex = /exports\./g
+const generateEntry = (name: string, exports: string[]): [string, string] => {
+  const entryPointFunctions = exports.map((exp) => `function ${exp}() {}`).join('\n')
+  const globalAssignments = exports.map((exp) => `this.${exp} = ${name}.${exp};`).join('\n')
+  return [entryPointFunctions, globalAssignments]
+}
 
 const plugin = (): Plugin => {
   return {
     name: 'rolldown-gas-plugin',
+    outputOptions: (outputOptions) => {
+      // 出力フォーマットがIIFEでない場合は何もしない
+      if (!outputOptions.format || outputOptions.format !== 'iife') {
+        return
+      }
+      // 名前が指定されていない場合はデフォルトで '_' を設定
+      if (!outputOptions.name) {
+        outputOptions.name = '_'
+      }
+      return outputOptions
+    },
     generateBundle(outputOptions, bundle) {
+      // 出力フォーマットがIIFEでない場合は何もしない
+      if (!outputOptions.format || outputOptions.format !== 'iife') {
+        return
+      }
       const name = outputOptions.name
-      const minify = outputOptions.minify
+      if (!name) {
+        throw new Error('Output name is required for IIFE format.')
+      }
 
       Object.values(bundle)
         .filter((file) => file.type === 'chunk')
         .map((chunk) => {
-          const originalCode = chunk.code
-          const code = minify ? originalCode.replaceAll(exportsRegex, '\nexports.') : originalCode
-          const codePrefix = name ? '' : 'var _ = '
-          const gas = generate(code, {
-            comment: false,
-            exportsIdentifierName: name ?? '_',
-            autoGlobalExports: true,
-            globalIdentifierName: 'this',
-          })
-          chunk.code = `${gas.entryPointFunctions}\n${codePrefix}${originalCode}\n${gas.globalAssignments}`
+          const code = chunk.code
+          const [entryPointFunctions, globalAssignments] = generateEntry(name, chunk.exports || [])
+          chunk.code = `${entryPointFunctions}\n${code}\n${globalAssignments}`
         })
     },
   }
