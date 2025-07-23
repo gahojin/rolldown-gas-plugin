@@ -15,7 +15,7 @@ const plugin = (): Plugin => {
         .map((chunk) => {
           const originalCode = chunk.code
           const code = minify ? originalCode.replaceAll(exportsRegex, '\nexports.') : originalCode
-          const codePrefix = name ? (minify ? `var ${name} = ` : '') : 'var _ = '
+          const codePrefix = name ? '' : 'var _ = '
           const gas = generate(code, {
             comment: false,
             exportsIdentifierName: name ?? '_',
