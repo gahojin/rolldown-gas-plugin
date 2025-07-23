@@ -59,7 +59,6 @@ this.main2 = _.main2;
 this.main3 = _.main3;`)
   })
 
-
   test('minify:false with name=a', async () => {
     const outfilePath = resolve(distPath, 'test1.js')
 
