@@ -66,7 +66,7 @@
     "rimraf": "6.0.1",
     "rolldown": "1.0.0-beta.31",
     "typescript": "5.9.2",
-    "unplugin-isolated-decl": "0.14.6",
+    "unplugin-isolated-decl": "0.14.7",
     "vite-tsconfig-paths": "5.1.4",
     "vitest": "3.2.4"
   },
