@@ -32,7 +32,7 @@ const plugin = (): Plugin => {
 
       Object.values(bundle)
         .filter((file) => file.type === 'chunk')
-        .map((chunk) => {
+        .forEach((chunk) => {
           const code = chunk.code
           const [entryPointFunctions, globalAssignments] = generateEntry(name, chunk.exports || [])
           chunk.code = `${entryPointFunctions}\n${code}\n${globalAssignments}`
