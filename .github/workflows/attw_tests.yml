@@ -1,23 +1,30 @@
-name: Release
+name: Are the types wrong?
 
 on:
   workflow_dispatch:
-  release:
-    types:
-      - published
+  push:
+    branches: ["main"]
+    paths:
+      - "package.json"
+  pull_request:
+    paths-ignore:
+      - "package.json"
 
 permissions:
   contents: read
-  id-token: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  release:
+  tests:
     timeout-minutes: 30
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [22]
+        node-version: [24]
 
     steps:
       - name: Checkout
@@ -36,11 +43,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "pnpm"
-          registry-url: "https://registry.npmjs.org/"
-          scope: "@gahojin-inc"
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Publish
-        run: pnpm -r publish --no-git-checks
+      - name: Check package.json
+        run: pnpm run check:packagejson
