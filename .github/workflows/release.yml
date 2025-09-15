@@ -39,6 +39,12 @@ jobs:
           registry-url: "https://registry.npmjs.org/"
           scope: "@gahojin-inc"
 
+      - name: Install latest npm
+        run: |
+          echo "Current npm version: $(npm -v)"
+          npm install -g npm@latest
+          echo "Updated npm version: $(npm -v)"
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
