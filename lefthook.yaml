@@ -15,7 +15,7 @@ pre-commit:
   commands:
     lint:
       glob: "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
-      run: pnpm exec biome check --write {staged_files}
+      run: pnpm exec biome check --write --no-errors-on-unmatched --colors=off {staged_files}
       stage_fixed: true
       skip:
         - merge
