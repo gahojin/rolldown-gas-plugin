@@ -32,21 +32,21 @@ var _ = (function(exports) {
 
 
 //#region src/fixtures/echo.ts
-const echo = (message) => message;
-const main3 = () => {
-	console.log(echo("hello world."));
-};
+	const echo = (message) => message;
+	const main3 = () => {
+		console.log(echo("hello world."));
+	};
 
 //#endregion
 //#region src/fixtures/main.ts
-const plus = (x, y) => x + y;
-const minus = (x, y) => x - y;
-const main1 = () => {
-	console.log(echo(\`1 + 2 = \${plus(1, 2)}\`));
-};
-const main2 = () => {
-	console.log(echo(\`3 - 1 = \${minus(3, 1)}\`));
-};
+	const plus = (x, y) => x + y;
+	const minus = (x, y) => x - y;
+	const main1 = () => {
+		console.log(echo(\`1 + 2 = \${plus(1, 2)}\`));
+	};
+	const main2 = () => {
+		console.log(echo(\`3 - 1 = \${minus(3, 1)}\`));
+	};
 
 //#endregion
 exports.main1 = main1;
@@ -81,21 +81,21 @@ var a = (function(exports) {
 
 
 //#region src/fixtures/echo.ts
-const echo = (message) => message;
-const main3 = () => {
-	console.log(echo("hello world."));
-};
+	const echo = (message) => message;
+	const main3 = () => {
+		console.log(echo("hello world."));
+	};
 
 //#endregion
 //#region src/fixtures/main.ts
-const plus = (x, y) => x + y;
-const minus = (x, y) => x - y;
-const main1 = () => {
-	console.log(echo(\`1 + 2 = \${plus(1, 2)}\`));
-};
-const main2 = () => {
-	console.log(echo(\`3 - 1 = \${minus(3, 1)}\`));
-};
+	const plus = (x, y) => x + y;
+	const minus = (x, y) => x - y;
+	const main1 = () => {
+		console.log(echo(\`1 + 2 = \${plus(1, 2)}\`));
+	};
+	const main2 = () => {
+		console.log(echo(\`3 - 1 = \${minus(3, 1)}\`));
+	};
 
 //#endregion
 exports.main1 = main1;
