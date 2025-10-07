@@ -125,7 +125,7 @@ this.main3 = a.main3;`)
     expect(outfile).toEqual(`function main1() {}
 function main2() {}
 function main3() {}
-var _=(function(exports){let t=e=>e,n=()=>{console.log(t(\`hello world.\`))},r=(e,t)=>e+t,i=(e,t)=>e-t;return exports.main1=()=>{console.log(t(\`1 + 2 = \${r(1,2)}\`))},exports.main2=()=>{console.log(t(\`3 - 1 = \${i(3,1)}\`))},exports.main3=n,exports})({});
+var _=(function(e){let t=e=>e,n=()=>{console.log(t(\`hello world.\`))},r=(e,t)=>e+t,i=(e,t)=>e-t;return e.main1=()=>{console.log(t(\`1 + 2 = \${r(1,2)}\`))},e.main2=()=>{console.log(t(\`3 - 1 = \${i(3,1)}\`))},e.main3=n,e})({});
 this.main1 = _.main1;
 this.main2 = _.main2;
 this.main3 = _.main3;`)
@@ -149,7 +149,7 @@ this.main3 = _.main3;`)
     expect(outfile).toEqual(`function main1() {}
 function main2() {}
 function main3() {}
-var a=(function(exports){let t=e=>e,n=()=>{console.log(t(\`hello world.\`))},r=(e,t)=>e+t,i=(e,t)=>e-t;return exports.main1=()=>{console.log(t(\`1 + 2 = \${r(1,2)}\`))},exports.main2=()=>{console.log(t(\`3 - 1 = \${i(3,1)}\`))},exports.main3=n,exports})({});
+var a=(function(e){let t=e=>e,n=()=>{console.log(t(\`hello world.\`))},r=(e,t)=>e+t,i=(e,t)=>e-t;return e.main1=()=>{console.log(t(\`1 + 2 = \${r(1,2)}\`))},e.main2=()=>{console.log(t(\`3 - 1 = \${i(3,1)}\`))},e.main3=n,e})({});
 this.main1 = a.main1;
 this.main2 = a.main2;
 this.main3 = a.main3;`)
