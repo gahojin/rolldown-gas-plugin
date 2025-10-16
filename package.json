@@ -26,7 +26,7 @@
     "clean": "rimraf dist",
     "prebuild": "rimraf dist",
     "build": "rolldown -c",
-    "prepublish": "pnpm run build",
+    "prepublishOnly": "pnpm run build",
     "lint": "biome check --write .",
     "check": "tsc",
     "check:packagejson": "pnpm attw --profile node16 --pack .",
