@@ -44,6 +44,11 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "pnpm"
 
+      - name: Setup safe-chain
+        run: |
+          pnpm add -g @aikidosec/safe-chain
+          safe-chain setup-ci
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
