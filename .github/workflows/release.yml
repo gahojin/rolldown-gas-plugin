@@ -39,6 +39,11 @@ jobs:
           registry-url: "https://registry.npmjs.org/"
           scope: "@gahojin-inc"
 
+      - name: Setup safe-chain
+        run: |
+          pnpm add -g @aikidosec/safe-chain
+          safe-chain setup-ci
+
       - name: Install latest npm
         run: |
           echo "Current npm version: $(npm -v)"
