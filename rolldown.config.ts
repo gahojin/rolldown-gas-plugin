@@ -3,7 +3,6 @@ import IsolatedDecl from 'unplugin-isolated-decl/rolldown'
 
 export default defineConfig([
   {
-    external: ['gas-entry-generator'],
     treeshake: true,
     input: 'src/index.ts',
     output: [
