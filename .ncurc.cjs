@@ -1,8 +1,11 @@
-const target = (name, _semver) => {
-  if (name === '@types/node') {
-    return 'minor'
-  }
-  return 'latest'
-}
+const { defineConfig } = require('npm-check-updates')
 
-exports.target = target
+module.exports = defineConfig({
+  target: (name) => {
+    if (name === '@types/node' || name === 'vitest' || name.startsWith('@vitest/')) {
+      return 'minor'
+    }
+    return 'newest'
+  },
+  cooldown: 7,
+})
