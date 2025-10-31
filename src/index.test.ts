@@ -1,4 +1,4 @@
-import { readFileSync, rmSync } from 'node:fs'
+import { readFile, rm } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { build } from 'rolldown'
 import { beforeAll, describe, expect, test } from 'vitest'
@@ -7,8 +7,8 @@ import gasPlugin from './index'
 describe('test', async () => {
   const distPath = resolve(__dirname, './dist')
 
-  beforeAll(() => {
-    rmSync(distPath, { force: true, recursive: true })
+  beforeAll(async () => {
+    await rm(distPath, { force: true, recursive: true })
   })
 
   test('minify:false', async () => {
@@ -24,7 +24,7 @@ describe('test', async () => {
       plugins: [gasPlugin()],
     })
 
-    const outfile = readFileSync(outfilePath, { encoding: 'utf8' })
+    const outfile = await readFile(outfilePath, { encoding: 'utf8' })
     expect(outfile).toEqual(`function main1() {}
 function main2() {}
 function main3() {}
@@ -73,7 +73,7 @@ this.main3 = _.main3;`)
       plugins: [gasPlugin()],
     })
 
-    const outfile = readFileSync(outfilePath, { encoding: 'utf8' })
+    const outfile = await readFile(outfilePath, { encoding: 'utf8' })
     expect(outfile).toEqual(`function main1() {}
 function main2() {}
 function main3() {}
@@ -121,7 +121,7 @@ this.main3 = a.main3;`)
       plugins: [gasPlugin()],
     })
 
-    const outfile = readFileSync(outfilePath, { encoding: 'utf8' })
+    const outfile = await readFile(outfilePath, { encoding: 'utf8' })
     expect(outfile).toEqual(`function main1() {}
 function main2() {}
 function main3() {}
@@ -145,7 +145,7 @@ this.main3 = _.main3;`)
       plugins: [gasPlugin()],
     })
 
-    const outfile = readFileSync(outfilePath, { encoding: 'utf8' })
+    const outfile = await readFile(outfilePath, { encoding: 'utf8' })
     expect(outfile).toEqual(`function main1() {}
 function main2() {}
 function main3() {}
