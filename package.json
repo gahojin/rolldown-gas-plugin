@@ -58,9 +58,9 @@
     "@commitlint/config-conventional": "20.0.0",
     "@fast-check/vitest": "0.2.2",
     "@types/node": "20.19.24",
-    "@vitest/coverage-v8": "4.0.4",
+    "@vitest/coverage-v8": "4.0.5",
     "jest-extended": "6.0.0",
-    "lefthook": "2.0.1",
+    "lefthook": "2.0.2",
     "npm-check-updates": "19.1.2",
     "rimraf": "6.0.1",
     "rolldown": "1.0.0-beta.45",
@@ -68,7 +68,7 @@
     "unplugin-isolated-decl": "0.15.3",
     "vite": "7.1.12",
     "vite-tsconfig-paths": "5.1.4",
-    "vitest": "4.0.4"
+    "vitest": "4.0.5"
   },
   "pnpm": {
     "ignoredBuiltDependencies": [
