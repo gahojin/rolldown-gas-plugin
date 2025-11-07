@@ -1,7 +1,7 @@
 import tsconfigPaths from 'vite-tsconfig-paths'
-import { defineConfig, type UserConfigExport } from 'vitest/config'
+import { defineConfig } from 'vitest/config'
 
-const config: UserConfigExport = {
+export default defineConfig({
   plugins: [tsconfigPaths()],
   test: {
     environment: 'node',
@@ -11,6 +11,4 @@ const config: UserConfigExport = {
       include: ['src/**/*.bench.ts'],
     },
   },
-}
-
-export default defineConfig(config)
+})
