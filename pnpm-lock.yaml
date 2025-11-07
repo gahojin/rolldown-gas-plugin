@@ -4,9 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  '@fast-check/vitest>vitest': ^1 || ^2 || ^3 || ^4
-
 importers:
 
   .:
@@ -24,8 +21,8 @@ importers:
         specifier: 20.0.0
         version: 20.0.0
       '@fast-check/vitest':
-        specifier: 0.2.2
-        version: 0.2.2(vitest@4.0.5(@types/node@20.19.24)(jiti@2.6.1))
+        specifier: 0.2.3
+        version: 0.2.3(vitest@4.0.5(@types/node@20.19.24)(jiti@2.6.1))
       '@types/node':
         specifier: 20.19.24
         version: 20.19.24
@@ -396,8 +393,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@fast-check/vitest@0.2.2':
-    resolution: {integrity: sha512-bL7uiHj3PetEUSDoEANFzIY2QQIR2svQdCRbe6RgWxYO+QGaJD8PdyshM4hNA2ieqrtrDWuUs+1S34DWJQjn9A==}
+  '@fast-check/vitest@0.2.3':
+    resolution: {integrity: sha512-BBjiZOiCvKRfoeuWz62ZpjFfuaLEKSDWXl7Fkli9FBNJGUzBDv7PZdXPGbrUiaTreIFs9I1INrlQgboRBA3H1Q==}
     peerDependencies:
       vitest: ^1 || ^2 || ^3 || ^4
 
@@ -2064,7 +2061,7 @@ snapshots:
   '@esbuild/win32-x64@0.25.11':
     optional: true
 
-  '@fast-check/vitest@0.2.2(vitest@4.0.5(@types/node@20.19.24)(jiti@2.6.1))':
+  '@fast-check/vitest@0.2.3(vitest@4.0.5(@types/node@20.19.24)(jiti@2.6.1))':
     dependencies:
       fast-check: 4.3.0
       vitest: 4.0.5(@types/node@20.19.24)(jiti@2.6.1)
