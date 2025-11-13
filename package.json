@@ -53,20 +53,20 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "0.18.2",
-    "@biomejs/biome": "2.3.3",
+    "@biomejs/biome": "2.3.4",
     "@commitlint/cli": "20.1.0",
     "@commitlint/config-conventional": "20.0.0",
     "@fast-check/vitest": "0.2.3",
     "@types/node": "20.19.24",
     "@vitest/coverage-v8": "4.0.7",
-    "jest-extended": "6.0.0",
+    "jest-extended": "7.0.0",
     "lefthook": "2.0.2",
     "npm-check-updates": "19.1.2",
     "rimraf": "6.1.0",
     "rolldown": "1.0.0-beta.47",
     "typescript": "5.9.3",
     "unplugin-isolated-decl": "0.15.3",
-    "vite": "7.1.12",
+    "vite": "7.2.1",
     "vite-tsconfig-paths": "5.1.4",
     "vitest": "4.0.7"
   }
