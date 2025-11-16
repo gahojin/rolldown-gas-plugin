@@ -23,8 +23,6 @@
     "provenance": true
   },
   "scripts": {
-    "clean": "rimraf dist",
-    "prebuild": "rimraf dist",
     "build": "rolldown -c",
     "prepublishOnly": "pnpm run build",
     "lint": "biome check --write .",
@@ -62,7 +60,6 @@
     "jest-extended": "7.0.0",
     "lefthook": "2.0.2",
     "npm-check-updates": "19.1.2",
-    "rimraf": "6.1.0",
     "rolldown": "1.0.0-beta.47",
     "typescript": "5.9.3",
     "unplugin-isolated-decl": "0.15.3",
