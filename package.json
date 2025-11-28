@@ -56,15 +56,15 @@
     "@commitlint/config-conventional": "20.0.0",
     "@fast-check/vitest": "0.2.3",
     "@types/node": "20.19.25",
-    "@vitest/coverage-v8": "4.0.10",
+    "@vitest/coverage-v8": "4.0.12",
     "jest-extended": "7.0.0",
     "lefthook": "2.0.4",
     "npm-check-updates": "19.1.2",
     "rolldown": "1.0.0-beta.51",
     "typescript": "5.9.3",
     "unplugin-isolated-decl": "0.15.6",
-    "vite": "7.2.2",
+    "vite": "7.2.4",
     "vite-tsconfig-paths": "5.1.4",
-    "vitest": "4.0.10"
+    "vitest": "4.0.12"
   }
 }
