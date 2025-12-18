@@ -59,7 +59,7 @@
     "@vitest/coverage-v8": "4.0.15",
     "jest-extended": "7.0.0",
     "lefthook": "2.0.9",
-    "npm-check-updates": "19.1.2",
+    "npm-check-updates": "19.2.0",
     "rolldown": "1.0.0-beta.53",
     "typescript": "5.9.3",
     "unplugin-isolated-decl": "0.15.6",
