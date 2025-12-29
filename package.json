@@ -60,7 +60,7 @@
     "jest-extended": "7.0.0",
     "lefthook": "2.0.12",
     "npm-check-updates": "19.2.0",
-    "rolldown": "1.0.0-beta.55",
+    "rolldown": "1.0.0-beta.56",
     "typescript": "5.9.3",
     "unplugin-isolated-decl": "0.15.7",
     "vite": "7.3.0",
