@@ -54,7 +54,7 @@ const plugin = ({ appsScriptFile }: Options = {}): Plugin => {
       const outputFile = outputOptions.file
       const outputDir = outputOptions.dir ?? (outputFile ? dirname(outputFile) : null)
       if (outputDir) {
-        const destPath = resolve(__dirname, outputDir, 'appsscript.json')
+        const destPath = resolve(outputDir, 'appsscript.json')
         if (existsSync(appsScriptFile)) {
           try {
             copyFileSync(appsScriptFile, destPath)
