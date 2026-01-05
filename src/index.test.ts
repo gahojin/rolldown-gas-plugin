@@ -154,4 +154,30 @@ this.main1 = a.main1;
 this.main2 = a.main2;
 this.main3 = a.main3;`)
   })
+
+  test('appsscript.json copy', async () => {
+    const testPath = resolve(__dirname, 'dummy_appsscript.json')
+    const outfilePath = resolve(distPath, 'test2.js')
+    const destAppscriptPath = resolve(distPath, 'appsscript.json')
+
+    await build({
+      input: resolve(__dirname, './fixtures/main.ts'),
+      output: {
+        name: 'a',
+        format: 'iife',
+        file: outfilePath,
+        minify: true,
+      },
+      plugins: [gasPlugin({ appsScriptFile: testPath })],
+    })
+
+    const outfile = await readFile(destAppscriptPath, { encoding: 'utf8' })
+    expect(outfile).toEqual(`{
+  "timeZone": "Asia/Tokyo",
+  "dependencies": {},
+  "exceptionLogging": "STACKDRIVER",
+  "runtimeVersion": "V8"
+}
+`)
+  })
 })

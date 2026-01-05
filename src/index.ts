@@ -1,4 +1,10 @@
+import { copyFileSync, existsSync } from 'node:fs'
+import { dirname, resolve } from 'node:path'
 import type { Plugin } from 'rolldown'
+
+type Options = {
+  appsScriptFile?: string
+}
 
 const generateEntry = (name: string, exports: string[]): [string, string] => {
   const entryPointFunctions = exports.map((exp) => `function ${exp}() {}`).join('\n')
@@ -6,7 +12,7 @@ const generateEntry = (name: string, exports: string[]): [string, string] => {
   return [entryPointFunctions, globalAssignments]
 }
 
-const plugin = (): Plugin => {
+const plugin = ({ appsScriptFile }: Options = {}): Plugin => {
   return {
     name: 'rolldown-gas-plugin',
     outputOptions: (outputOptions) => {
@@ -22,12 +28,12 @@ const plugin = (): Plugin => {
     },
     generateBundle(outputOptions, bundle) {
       // 出力フォーマットがIIFEでない場合は何もしない
-      if (!outputOptions.format || outputOptions.format !== 'iife') {
+      if (outputOptions.format !== 'iife') {
         return
       }
       const name = outputOptions.name
       if (!name) {
-        throw new Error('Output name is required for IIFE format.')
+        throw new Error('❌ Output name is required for IIFE format.')
       }
 
       Object.values(bundle)
@@ -37,6 +43,27 @@ const plugin = (): Plugin => {
           const [entryPointFunctions, globalAssignments] = generateEntry(name, chunk.exports || [])
           chunk.code = `${entryPointFunctions}\n${code}\n${globalAssignments}`
         })
+    },
+    writeBundle(outputOptions) {
+      // 設定未設定時、エラー発生時は何もしない
+      // 出力フォーマットがIIFEでない場合は何もしない
+      if (!appsScriptFile || outputOptions.format !== 'iife') {
+        return
+      }
+
+      const outputFile = outputOptions.file
+      const outputDir = outputOptions.dir ?? (outputFile ? dirname(outputFile) : null)
+      if (outputDir) {
+        const destPath = resolve(__dirname, outputDir, 'appsscript.json')
+        if (existsSync(appsScriptFile)) {
+          try {
+            copyFileSync(appsScriptFile, destPath)
+            console.log(`✅ appsscript.json has been copied to ${outputDir}/`)
+          } catch (err) {
+            console.error('❌ Error during copying appsscript.json:', err)
+          }
+        }
+      }
     },
   }
 }
