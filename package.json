@@ -27,26 +27,20 @@
     "prepublishOnly": "pnpm run build",
     "lint": "biome check --write .",
     "check": "tsgo",
-    "check:packagejson": "pnpm attw --profile node16 --pack .",
+    "check:packagejson": "pnpm attw --profile esm-only --pack .",
     "test": "vitest --watch",
     "test:unit": "vitest --passWithNoTests --run --coverage",
     "bench": "vitest bench",
     "ncu": "npm-check-updates -u"
   },
-  "main": "dist/index.cjs",
+  "main": "dist/index.mjs",
   "module": "dist/index.mjs",
-  "types": "dist/index.d.cts",
+  "types": "dist/index.d.mts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "import": {
-        "types": "./dist/index.d.mts",
-        "default": "./dist/index.mjs"
-      },
-      "require": {
-        "types": "./dist/index.d.cts",
-        "require": "./dist/index.cjs"
-      }
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
     }
   },
   "devDependencies": {
