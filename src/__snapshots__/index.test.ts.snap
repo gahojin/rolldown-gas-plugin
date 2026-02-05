@@ -16,6 +16,7 @@ function main2() {}
 function main3() {}
 var _ = (function(exports) {
 
+Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
 
 //#region src/fixtures/echo.ts
 	const echo = (message) => message;
@@ -51,6 +52,7 @@ function main2() {}
 function main3() {}
 var a = (function(exports) {
 
+Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
 
 //#region src/fixtures/echo.ts
 	const echo = (message) => message;
@@ -84,7 +86,7 @@ exports[`test > minify:true 1`] = `
 "function main1() {}
 function main2() {}
 function main3() {}
-var _=(function(e){let t=e=>e,n=()=>{console.log(t(\`hello world.\`))},r=(e,t)=>e+t,i=(e,t)=>e-t;return e.main1=()=>{console.log(t(\`1 + 2 = \${r(1,2)}\`))},e.main2=()=>{console.log(t(\`3 - 1 = \${i(3,1)}\`))},e.main3=n,e})({});
+var _=(function(e){Object.defineProperty(e,Symbol.toStringTag,{value:\`Module\`});let t=e=>e,n=()=>{console.log(t(\`hello world.\`))},r=(e,t)=>e+t,i=(e,t)=>e-t;return e.main1=()=>{console.log(t(\`1 + 2 = \${r(1,2)}\`))},e.main2=()=>{console.log(t(\`3 - 1 = \${i(3,1)}\`))},e.main3=n,e})({});
 this.main1 = _.main1;
 this.main2 = _.main2;
 this.main3 = _.main3;"
@@ -94,7 +96,7 @@ exports[`test > minify:true with name=a 1`] = `
 "function main1() {}
 function main2() {}
 function main3() {}
-var a=(function(e){let t=e=>e,n=()=>{console.log(t(\`hello world.\`))},r=(e,t)=>e+t,i=(e,t)=>e-t;return e.main1=()=>{console.log(t(\`1 + 2 = \${r(1,2)}\`))},e.main2=()=>{console.log(t(\`3 - 1 = \${i(3,1)}\`))},e.main3=n,e})({});
+var a=(function(e){Object.defineProperty(e,Symbol.toStringTag,{value:\`Module\`});let t=e=>e,n=()=>{console.log(t(\`hello world.\`))},r=(e,t)=>e+t,i=(e,t)=>e-t;return e.main1=()=>{console.log(t(\`1 + 2 = \${r(1,2)}\`))},e.main2=()=>{console.log(t(\`3 - 1 = \${i(3,1)}\`))},e.main3=n,e})({});
 this.main1 = a.main1;
 this.main2 = a.main2;
 this.main3 = a.main3;"
