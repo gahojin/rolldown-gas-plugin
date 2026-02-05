@@ -25,38 +25,7 @@ describe('test', async () => {
     })
 
     const outfile = await readFile(outfilePath, { encoding: 'utf8' })
-    expect(outfile).toEqual(`function main1() {}
-function main2() {}
-function main3() {}
-var _ = (function(exports) {
-
-
-//#region src/fixtures/echo.ts
-	const echo = (message) => message;
-	const main3 = () => {
-		console.log(echo("hello world."));
-	};
-
-//#endregion
-//#region src/fixtures/main.ts
-	const plus = (x, y) => x + y;
-	const minus = (x, y) => x - y;
-	const main1 = () => {
-		console.log(echo(\`1 + 2 = \${plus(1, 2)}\`));
-	};
-	const main2 = () => {
-		console.log(echo(\`3 - 1 = \${minus(3, 1)}\`));
-	};
-
-//#endregion
-exports.main1 = main1;
-exports.main2 = main2;
-exports.main3 = main3;
-return exports;
-})({});
-this.main1 = _.main1;
-this.main2 = _.main2;
-this.main3 = _.main3;`)
+    expect(outfile).toMatchSnapshot()
   })
 
   test('minify:false with name=a', async () => {
@@ -74,38 +43,7 @@ this.main3 = _.main3;`)
     })
 
     const outfile = await readFile(outfilePath, { encoding: 'utf8' })
-    expect(outfile).toEqual(`function main1() {}
-function main2() {}
-function main3() {}
-var a = (function(exports) {
-
-
-//#region src/fixtures/echo.ts
-	const echo = (message) => message;
-	const main3 = () => {
-		console.log(echo("hello world."));
-	};
-
-//#endregion
-//#region src/fixtures/main.ts
-	const plus = (x, y) => x + y;
-	const minus = (x, y) => x - y;
-	const main1 = () => {
-		console.log(echo(\`1 + 2 = \${plus(1, 2)}\`));
-	};
-	const main2 = () => {
-		console.log(echo(\`3 - 1 = \${minus(3, 1)}\`));
-	};
-
-//#endregion
-exports.main1 = main1;
-exports.main2 = main2;
-exports.main3 = main3;
-return exports;
-})({});
-this.main1 = a.main1;
-this.main2 = a.main2;
-this.main3 = a.main3;`)
+    expect(outfile).toMatchSnapshot()
   })
 
   test('minify:true', async () => {
@@ -122,13 +60,7 @@ this.main3 = a.main3;`)
     })
 
     const outfile = await readFile(outfilePath, { encoding: 'utf8' })
-    expect(outfile).toEqual(`function main1() {}
-function main2() {}
-function main3() {}
-var _=(function(e){let t=e=>e,n=()=>{console.log(t(\`hello world.\`))},r=(e,t)=>e+t,i=(e,t)=>e-t;return e.main1=()=>{console.log(t(\`1 + 2 = \${r(1,2)}\`))},e.main2=()=>{console.log(t(\`3 - 1 = \${i(3,1)}\`))},e.main3=n,e})({});
-this.main1 = _.main1;
-this.main2 = _.main2;
-this.main3 = _.main3;`)
+    expect(outfile).toMatchSnapshot()
   })
 
   test('minify:true with name=a', async () => {
@@ -146,13 +78,7 @@ this.main3 = _.main3;`)
     })
 
     const outfile = await readFile(outfilePath, { encoding: 'utf8' })
-    expect(outfile).toEqual(`function main1() {}
-function main2() {}
-function main3() {}
-var a=(function(e){let t=e=>e,n=()=>{console.log(t(\`hello world.\`))},r=(e,t)=>e+t,i=(e,t)=>e-t;return e.main1=()=>{console.log(t(\`1 + 2 = \${r(1,2)}\`))},e.main2=()=>{console.log(t(\`3 - 1 = \${i(3,1)}\`))},e.main3=n,e})({});
-this.main1 = a.main1;
-this.main2 = a.main2;
-this.main3 = a.main3;`)
+    expect(outfile).toMatchSnapshot()
   })
 
   test('appsscript.json copy', async () => {
@@ -172,12 +98,6 @@ this.main3 = a.main3;`)
     })
 
     const outfile = await readFile(destAppscriptPath, { encoding: 'utf8' })
-    expect(outfile).toEqual(`{
-  "timeZone": "Asia/Tokyo",
-  "dependencies": {},
-  "exceptionLogging": "STACKDRIVER",
-  "runtimeVersion": "V8"
-}
-`)
+    expect(outfile).toMatchSnapshot()
   })
 })
