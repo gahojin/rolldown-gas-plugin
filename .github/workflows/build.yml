@@ -1,37 +1,39 @@
 name: Build
 
 on:
+  workflow_dispatch:
   push:
-    branches:
-      - "main"
-    paths-ignore:
-      - ".vscode/**"
-      - "LICENSE"
-      - "*.md"
-      - "lefthook.yaml"
+    branches: ['main']
+    paths:
+      - 'src/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'tsconfig.json'
+      - 'vitest.*.ts'
   pull_request:
-    paths-ignore:
-      - ".vscode/**"
-      - "LICENSE"
-      - "*.md"
-      - "lefthook.yaml"
-
-permissions:
-  contents: read
+    paths:
+      - 'src/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'tsconfig.json'
+      - 'vitest.*.ts'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   build:
-    timeout-minutes: 30
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     if: contains(github.event.head_commit.message, '[skip build]') == false
 
     strategy:
       matrix:
-        node-version: [22]
+        node-version: [24]
 
     steps:
       - name: Checkout
@@ -49,7 +51,7 @@ jobs:
         uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
         with:
           node-version: ${{ matrix.node-version }}
-          cache: "pnpm"
+          cache: 'pnpm'
 
       - name: Setup safe-chain
         run: curl -fsSL https://github.com/AikidoSec/safe-chain/releases/latest/download/install-safe-chain.sh | sh -s -- --ci
@@ -62,9 +64,6 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-
-      - name: Run biome migrate
-        run: pnpm biome migrate --write
 
       - name: Run Build
         run: pnpm run build

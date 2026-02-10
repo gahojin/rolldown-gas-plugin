@@ -1,5 +1,2 @@
 ignoredBuiltDependencies:
   - esbuild
-
-onlyBuiltDependencies:
-  - lefthook
