@@ -23,7 +23,7 @@
     "provenance": true
   },
   "scripts": {
-    "postinstall": "biome migrate --write",
+    "prepare": "biome migrate --write",
     "build": "rolldown -c",
     "prepublishOnly": "pnpm run build",
     "lint": "biome check --write .",
