@@ -50,7 +50,7 @@
     "@biomejs/biome": "2.4.3",
     "@fast-check/vitest": "0.2.4",
     "@types/node": "24.10.13",
-    "@typescript/native-preview": "7.0.0-dev.20260216.1",
+    "@typescript/native-preview": "7.0.0-dev.20260217.1",
     "@vitest/coverage-v8": "4.0.18",
     "jest-extended": "7.0.0",
     "npm-check-updates": "19.4.1",
