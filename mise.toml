@@ -3,7 +3,12 @@ lefthook = "latest"
 node = "24"
 "npm:@commitlint/cli" = "latest"
 "npm:@commitlint/config-conventional" = "latest"
+"npm:npm-check-updates" = "latest"
 "pipx:bumpver" = "latest"
 pnpm = "latest"
 python = "latest"
 uv = "latest"
+
+[tasks.ncu]
+run = "npm-check-updates -u"
+
