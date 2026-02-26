@@ -1,6 +1,5 @@
-const { defineConfig } = require('npm-check-updates')
-
-module.exports = defineConfig({
+/** @type {import('npm-check-updates').RcOptions } */
+module.exports = {
   target: (name) => {
     if (name === '@types/node') {
       return 'minor'
@@ -8,4 +7,4 @@ module.exports = defineConfig({
     return 'newest'
   },
   cooldown: 7,
-})
+}

@@ -33,7 +33,7 @@
     "test:unit": "vitest --passWithNoTests --run --coverage",
     "test:update": "vitest --update",
     "bench": "vitest bench",
-    "ncu": "npm-check-updates -u"
+    "ncu": "mise run ncu"
   },
   "main": "dist/index.mjs",
   "module": "dist/index.mjs",
@@ -47,13 +47,12 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "0.18.2",
-    "@biomejs/biome": "2.4.3",
+    "@biomejs/biome": "2.4.4",
     "@fast-check/vitest": "0.2.4",
     "@types/node": "24.10.13",
     "@typescript/native-preview": "7.0.0-dev.20260217.1",
     "@vitest/coverage-v8": "4.0.18",
     "jest-extended": "7.0.0",
-    "npm-check-updates": "19.4.1",
     "rolldown": "1.0.0-rc.5",
     "unplugin-isolated-decl": "0.15.7",
     "vite": "7.3.1",
