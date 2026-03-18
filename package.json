@@ -47,17 +47,16 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "0.18.2",
-    "@biomejs/biome": "2.4.6",
+    "@biomejs/biome": "2.4.7",
     "@fast-check/vitest": "0.3.0",
     "@types/node": "24.12.0",
-    "@typescript/native-preview": "7.0.0-dev.20260302.1",
-    "@vitest/coverage-v8": "4.0.18",
+    "@typescript/native-preview": "7.0.0-dev.20260311.1",
+    "@vitest/coverage-v8": "4.1.0",
     "jest-extended": "7.0.0",
-    "rolldown": "1.0.0-rc.8",
+    "rolldown": "1.0.0-rc.9",
     "unplugin-isolated-decl": "0.15.7",
-    "vite": "7.3.1",
-    "vite-tsconfig-paths": "6.1.1",
-    "vitest": "4.0.18"
+    "vite": "8.0.0",
+    "vitest": "4.1.0"
   },
-  "packageManager": "pnpm@10.30.3"
+  "packageManager": "pnpm@10.32.1"
 }
