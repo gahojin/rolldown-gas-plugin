@@ -1,19 +1,31 @@
-name: Release
+name: Size
 
 on:
-  workflow_dispatch:
-  release:
-    types:
-      - published
+  push:
+    branches: ['main']
+    paths:
+      - 'src/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
 
 permissions:
   contents: read
-  id-token: write
+  pull-requests: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  release:
+  size:
     timeout-minutes: 10
     runs-on: ubuntu-latest
+    if: contains(github.event.head_commit.message, '[skip build]') == false
 
     strategy:
       matrix:
@@ -35,20 +47,14 @@ jobs:
         uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
         with:
           node-version: ${{ matrix.node-version }}
-          registry-url: 'https://registry.npmjs.org/'
-          scope: '@gahojin-inc'
 
       - name: Setup safe-chain
         run: curl -fsSL https://github.com/AikidoSec/safe-chain/releases/latest/download/install-safe-chain.sh | sh -s -- --ci
 
-      - name: Install latest npm
-        run: |
-          echo "Current npm version: $(npm -v)"
-          npm install -g npm@latest
-          echo "Updated npm version: $(npm -v)"
-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Publish
-        run: pnpm -r publish --no-git-checks
+      - name: Check size and Comment PR
+        uses: preactjs/compressed-size-action@66325aad6443cb7cf89c4bfcd414aea2367cda94 # v2.9.1
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
