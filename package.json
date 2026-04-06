@@ -28,21 +28,21 @@
     "prepublishOnly": "pnpm run build",
     "lint": "biome check --write .",
     "check": "tsgo",
-    "check:packagejson": "pnpm attw --profile esm-only --pack .",
+    "check:packagejson": "pnpm attw --pack . --profile esm-only --ignore-rules cjs-resolves-to-esm",
     "test": "vitest --watch",
     "test:unit": "vitest --passWithNoTests --run --coverage",
     "test:update": "vitest --update",
     "bench": "vitest bench",
     "ncu": "mise run ncu"
   },
-  "main": "dist/index.mjs",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.mts",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "types": "./dist/index.d.mts",
-      "default": "./dist/index.mjs"
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     }
   },
   "devDependencies": {
@@ -54,7 +54,7 @@
     "@vitest/coverage-v8": "4.1.2",
     "jest-extended": "7.0.0",
     "rolldown": "1.0.0-rc.12",
-    "unplugin-isolated-decl": "0.15.7",
+    "rolldown-plugin-dts": "0.23.2",
     "vite": "8.0.3",
     "vitest": "4.1.2"
   },
