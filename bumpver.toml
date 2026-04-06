@@ -1,6 +1,6 @@
 [bumpver]
-current_version = "v0.8.0"
-version_pattern = "vMAJOR.MINOR.PATCH"
+current_version = "v2026.4.0"
+version_pattern = "vYYYY.MM.INC0"
 commit_message = "chore: bump version {old_version_pep440} -> {new_version_pep440}"
 tag_message = "release {new_version_pep440}"
 tag_scope = "default"
@@ -14,4 +14,3 @@ push = false
 "package.json" = [
     '"version": "{pep440_version}"',
 ]
-
