@@ -41,12 +41,6 @@ jobs:
       - name: Setup safe-chain
         run: curl -fsSL https://github.com/AikidoSec/safe-chain/releases/latest/download/install-safe-chain.sh | sh -s -- --ci
 
-      - name: Install latest npm
-        run: |
-          echo "Current npm version: $(npm -v)"
-          npm install -g npm@latest
-          echo "Updated npm version: $(npm -v)"
-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
