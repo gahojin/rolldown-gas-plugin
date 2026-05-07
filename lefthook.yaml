@@ -15,6 +15,9 @@ commit-msg:
 pre-commit:
   parallel: true
   commands:
+    gitleaks:
+      tags: security
+      run: mise exec -- gitleaks git --pre-commit --staged --no-color --no-banner --verbose
     lint:
       glob: "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
       run: mise exec -- pnpm exec biome check --write --no-errors-on-unmatched --colors=off {staged_files}
