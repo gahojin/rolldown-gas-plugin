@@ -2,7 +2,7 @@ import { readFile, rm } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { build } from 'rolldown'
 import { beforeAll, describe, expect, test } from 'vitest'
-import gasPlugin from './index'
+import gasPlugin from './index.js'
 
 describe('test', async () => {
   const distPath = resolve(__dirname, './dist')
