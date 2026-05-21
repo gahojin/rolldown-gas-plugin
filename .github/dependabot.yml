@@ -7,7 +7,7 @@ updates:
         patterns:
           - "*"
     schedule:
-      interval: "daily"
+      interval: "monthly"
     cooldown:
       default-days: 7
   - package-ecosystem: "npm"
@@ -21,6 +21,6 @@ updates:
       - dependency-name: "@types/node"
         update-types: ["version-update:semver-major"]
     schedule:
-      interval: "daily"
+      interval: "monthly"
     cooldown:
       default-days: 7
