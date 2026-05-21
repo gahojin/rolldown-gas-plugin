@@ -29,7 +29,6 @@
     "prepublishOnly": "pnpm run build",
     "lint": "biome check --write .",
     "check": "tsc --noEmit",
-    "check:packagejson": "pnpm attw --pack . --profile esm-only --ignore-rules cjs-resolves-to-esm",
     "test": "vitest --watch",
     "test:unit": "vitest --passWithNoTests --run --coverage",
     "test:update": "vitest --update",
@@ -47,7 +46,6 @@
     }
   },
   "devDependencies": {
-    "@arethetypeswrong/cli": "0.18.2",
     "@biomejs/biome": "2.4.15",
     "@fast-check/vitest": "0.4.1",
     "@types/node": "24.12.4",

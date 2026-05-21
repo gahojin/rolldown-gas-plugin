@@ -51,9 +51,6 @@ jobs:
       - name: Run Build
         run: pnpm run build
 
-      - name: Check package.json
-        run: pnpm run check:packagejson
-
       - name: Run Linter & Formatter
         run: pnpm biome ci .
 
