@@ -1,4 +1,4 @@
-import { echo, main3 } from './echo'
+import { echo, main3 } from './echo.js'
 
 const plus = (x: number, y: number): number => x + y
 const minus = (x: number, y: number): number => x - y
