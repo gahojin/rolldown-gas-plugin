@@ -1,6 +1,9 @@
 # 重複排除
 dedupePeers: true
 
+overrides:
+  rolldown: $rolldown
+
 # リリースから一定時間経過していないか、信頼性低下したパッケージはインストールしない
 minimumReleaseAge: 2880 # 2d
 minimumReleaseAgeIgnoreMissingTime: false

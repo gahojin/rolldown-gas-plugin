@@ -4,7 +4,7 @@ minimum_release_age = "7d"
 [tools]
 gitleaks = "latest"
 lefthook = "latest"
-node = "24"
+node = "26"
 "npm:@commitlint/cli" = "latest"
 "npm:@commitlint/config-conventional" = "latest"
 "npm:npm-check-updates" = "latest"
