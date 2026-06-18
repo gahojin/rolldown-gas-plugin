@@ -46,18 +46,18 @@
     }
   },
   "devDependencies": {
-    "@biomejs/biome": "2.4.15",
+    "@biomejs/biome": "2.4.16",
     "@fast-check/vitest": "0.4.1",
-    "@types/node": "25.9.1",
-    "@vitest/coverage-v8": "4.1.6",
-    "rolldown": "1.0.2",
-    "rolldown-plugin-dts": "0.25.1",
+    "@types/node": "25.9.3",
+    "@vitest/coverage-v8": "4.1.8",
+    "rolldown": "1.1.0",
+    "rolldown-plugin-dts": "0.25.2",
     "typescript": "6.0.3",
     "vite": "8.0.16",
-    "vitest": "4.1.7"
+    "vitest": "4.1.8"
   },
   "peerDependencies": {
     "rolldown": "*"
   },
-  "packageManager": "pnpm@11.1.1"
+  "packageManager": "pnpm@11.5.1"
 }
