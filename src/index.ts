@@ -1,4 +1,5 @@
-import { copyFileSync, existsSync } from 'node:fs'
+import { existsSync } from 'node:fs'
+import { copyFile } from 'node:fs/promises'
 import { dirname, resolve } from 'node:path'
 import type { Plugin } from 'rolldown'
 
@@ -16,17 +17,16 @@ const plugin = ({ appsScriptFile }: Options = {}): Plugin => {
   return {
     name: 'rolldown-gas-plugin',
     outputOptions: (outputOptions) => {
-      // 出力フォーマットがIIFEでない場合は何もしない
-      if (!outputOptions.format || outputOptions.format !== 'iife') {
+      // 出力フォーマットがIIFEでない場合は何もしない/出力フォーマット未指定の場合、IIFEとして処理する
+      if (outputOptions.format && outputOptions.format !== 'iife') {
         return
       }
+      outputOptions.format = 'iife'
       // 名前が指定されていない場合はデフォルトで '_' を設定
-      if (!outputOptions.name) {
-        outputOptions.name = '_'
-      }
+      outputOptions.name = outputOptions.name || '_'
       return outputOptions
     },
-    generateBundle(outputOptions, bundle) {
+    async generateBundle(outputOptions, bundle) {
       // 出力フォーマットがIIFEでない場合は何もしない
       if (outputOptions.format !== 'iife') {
         return
@@ -36,32 +36,23 @@ const plugin = ({ appsScriptFile }: Options = {}): Plugin => {
         throw new Error('❌ Output name is required for IIFE format.')
       }
 
-      Object.values(bundle)
-        .filter((file) => file.type === 'chunk')
-        .forEach((chunk) => {
-          const code = chunk.code
-          const [entryPointFunctions, globalAssignments] = generateEntry(name, chunk.exports || [])
-          chunk.code = `${entryPointFunctions}\n${code}\n${globalAssignments}`
-        })
-    },
-    writeBundle(outputOptions) {
-      // 設定未設定時、エラー発生時は何もしない
-      // 出力フォーマットがIIFEでない場合は何もしない
-      if (!appsScriptFile || outputOptions.format !== 'iife') {
-        return
+      for (const file of Object.values(bundle)) {
+        if (file.type === 'chunk') {
+          const [entryPointFunctions, globalAssignments] = generateEntry(name, file.exports || [])
+          file.code = `${entryPointFunctions}\n${file.code}\n${globalAssignments}`
+        }
       }
-
-      const outputFile = outputOptions.file
-      const outputDir = outputOptions.dir ?? (outputFile ? dirname(outputFile) : null)
-      if (outputDir) {
-        const destPath = resolve(outputDir, 'appsscript.json')
-        if (existsSync(appsScriptFile)) {
-          try {
-            copyFileSync(appsScriptFile, destPath)
-            console.log(`✅ appsscript.json has been copied to ${outputDir}/`)
-          } catch (err) {
-            console.error('❌ Error during copying appsscript.json:', err)
-          }
+    },
+    async writeBundle(outputOptions) {
+      // appscript.jsonコピー設定されている場合、ファイルコピーを行う
+      if (appsScriptFile && existsSync(appsScriptFile)) {
+        try {
+          const outputDir = outputOptions.dir || (outputOptions.file ? dirname(outputOptions.file) : '')
+          const destPath = resolve(outputDir, 'appsscript.json')
+          await copyFile(appsScriptFile, destPath)
+          console.log(`✅ appsscript.json has been copied to ${outputDir}/`)
+        } catch (err) {
+          this.error(`❌ Error during copying appsscript.json: ${err}`)
         }
       }
     },

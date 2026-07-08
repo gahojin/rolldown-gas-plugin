@@ -11,68 +11,20 @@ describe('test', async () => {
     await rm(distPath, { force: true, recursive: true })
   })
 
-  test('minify:false', async () => {
-    const outfilePath = resolve(distPath, 'test1.js')
+  test.each([
+    { name: 'minify:false', options: { minify: false } },
+    { name: 'minify:false with name=a', options: { name: 'a', minify: false } },
+    { name: 'minify:true', options: { minify: true } },
+    { name: 'minify:true with name=a', options: { name: 'a', minify: true } },
+  ])('$name', async ({ options }) => {
+    const outfilePath = resolve(distPath, `${options.name || 'default'}_${options.minify}.js`)
 
     await build({
       input: resolve(__dirname, './fixtures/main.ts'),
       output: {
         format: 'iife',
         file: outfilePath,
-        minify: false,
-      },
-      plugins: [gasPlugin()],
-    })
-
-    const outfile = await readFile(outfilePath, { encoding: 'utf8' })
-    expect(outfile).toMatchSnapshot()
-  })
-
-  test('minify:false with name=a', async () => {
-    const outfilePath = resolve(distPath, 'test1.js')
-
-    await build({
-      input: resolve(__dirname, './fixtures/main.ts'),
-      output: {
-        name: 'a',
-        format: 'iife',
-        file: outfilePath,
-        minify: false,
-      },
-      plugins: [gasPlugin()],
-    })
-
-    const outfile = await readFile(outfilePath, { encoding: 'utf8' })
-    expect(outfile).toMatchSnapshot()
-  })
-
-  test('minify:true', async () => {
-    const outfilePath = resolve(distPath, 'test2.js')
-
-    await build({
-      input: resolve(__dirname, './fixtures/main.ts'),
-      output: {
-        format: 'iife',
-        file: outfilePath,
-        minify: true,
-      },
-      plugins: [gasPlugin()],
-    })
-
-    const outfile = await readFile(outfilePath, { encoding: 'utf8' })
-    expect(outfile).toMatchSnapshot()
-  })
-
-  test('minify:true with name=a', async () => {
-    const outfilePath = resolve(distPath, 'test2.js')
-
-    await build({
-      input: resolve(__dirname, './fixtures/main.ts'),
-      output: {
-        name: 'a',
-        format: 'iife',
-        file: outfilePath,
-        minify: true,
+        ...options,
       },
       plugins: [gasPlugin()],
     })
@@ -83,7 +35,7 @@ describe('test', async () => {
 
   test('appsscript.json copy', async () => {
     const testPath = resolve(__dirname, 'dummy_appsscript.json')
-    const outfilePath = resolve(distPath, 'test2.js')
+    const outfilePath = resolve(distPath, 'test_copy.js')
     const destAppscriptPath = resolve(distPath, 'appsscript.json')
 
     await build({
@@ -99,5 +51,26 @@ describe('test', async () => {
 
     const outfile = await readFile(destAppscriptPath, { encoding: 'utf8' })
     expect(outfile).toMatchSnapshot()
+  })
+
+  test('appsscript.json not copied when file missing', async () => {
+    const testPath = resolve(__dirname, 'non_existent_appsscript.json')
+    const outfilePath = resolve(distPath, 'test_no_copy.js')
+
+    const consoleSpy = vi.spyOn(console, 'log')
+
+    await build({
+      input: resolve(__dirname, './fixtures/main.ts'),
+      output: {
+        name: 'a',
+        format: 'iife',
+        file: outfilePath,
+        minify: true,
+      },
+      plugins: [gasPlugin({ appsScriptFile: testPath })],
+    })
+
+    expect(consoleSpy).not.toHaveBeenCalledWith(expect.stringContaining('✅ appsscript.json has been copied'))
+    consoleSpy.mockRestore()
   })
 })
