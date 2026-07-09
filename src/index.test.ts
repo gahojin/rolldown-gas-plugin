@@ -1,7 +1,8 @@
+import { existsSync } from 'node:fs'
 import { readFile, rm } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { build } from 'rolldown'
-import { beforeAll, describe, expect, test } from 'vitest'
+import { beforeAll, describe, expect, test, vi } from 'vitest'
 import gasPlugin from './index.js'
 
 describe('test', async () => {
@@ -56,6 +57,10 @@ describe('test', async () => {
   test('appsscript.json not copied when file missing', async () => {
     const testPath = resolve(__dirname, 'non_existent_appsscript.json')
     const outfilePath = resolve(distPath, 'test_no_copy.js')
+    const destAppscriptPath = resolve(distPath, 'appsscript.json')
+
+    // Explicitly remove manifest if it exists from previous tests
+    await rm(destAppscriptPath, { force: true })
 
     const consoleSpy = vi.spyOn(console, 'log')
 
@@ -71,6 +76,36 @@ describe('test', async () => {
     })
 
     expect(consoleSpy).not.toHaveBeenCalledWith(expect.stringContaining('✅ appsscript.json has been copied'))
+    expect(existsSync(destAppscriptPath)).toBe(false)
+    consoleSpy.mockRestore()
+  })
+  test('appsscript.json not copied when output destination is missing', async () => {
+    const testPath = resolve(__dirname, 'dummy_appsscript.json')
+    const consoleSpy = vi.spyOn(console, 'log')
+    const cwdManifest = resolve(process.cwd(), 'appsscript.json')
+
+    // Clean up any existing CWD manifest before run
+    await rm(cwdManifest, { force: true })
+
+    // Simulate missing output.dir and output.file
+    await build({
+      input: resolve(__dirname, './fixtures/main.ts'),
+      output: {
+        name: 'a',
+        format: 'iife',
+        // Both dir and file are missing
+      },
+      plugins: [gasPlugin({ appsScriptFile: testPath })],
+    })
+
+    expect(consoleSpy).not.toHaveBeenCalledWith(expect.stringContaining('✅ appsscript.json has been copied'))
+
+    // Check if it was copied to CWD
+    expect(existsSync(cwdManifest)).toBe(false)
+
+    // Post-test cleanup
+    await rm(cwdManifest, { force: true })
+
     consoleSpy.mockRestore()
   })
 })

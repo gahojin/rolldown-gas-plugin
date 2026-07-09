@@ -46,8 +46,11 @@ const plugin = ({ appsScriptFile }: Options = {}): Plugin => {
     async writeBundle(outputOptions) {
       // appscript.jsonコピー設定されている場合、ファイルコピーを行う
       if (appsScriptFile && existsSync(appsScriptFile)) {
+        const outputDir = outputOptions.dir || (outputOptions.file ? dirname(outputOptions.file) : '')
+        if (!outputDir) {
+          return
+        }
         try {
-          const outputDir = outputOptions.dir || (outputOptions.file ? dirname(outputOptions.file) : '')
           const destPath = resolve(outputDir, 'appsscript.json')
           await copyFile(appsScriptFile, destPath)
           console.log(`✅ appsscript.json has been copied to ${outputDir}/`)
