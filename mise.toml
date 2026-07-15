@@ -14,5 +14,5 @@ python = "latest"
 uv = "latest"
 
 [tasks.ncu]
-run = "npm-check-updates -u"
+run = "npm-check-updates -u -w"
 

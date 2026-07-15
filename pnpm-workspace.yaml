@@ -1,12 +1,14 @@
+packages:
+  - .
+
 # 重複排除
 dedupePeers: true
 
 catalog:
-  rolldown: 1.1.4
-  rolldown-plugin-dts: 0.26.0
-  typescript: 6.0.3
-  vite: 8.1.2
-  vitest: &vitest_ver 4.1.9
+  rolldown: 1.1.5
+  rolldown-plugin-dts: 0.27.7
+  typescript: 7.0.2
+  vitest: &vitest_ver 4.1.10
   '@biomejs/biome': 2.5.2
   '@fast-check/vitest': 0.4.1
   '@types/node': 26.1.0
