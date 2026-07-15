@@ -53,11 +53,10 @@
     "rolldown": "catalog:",
     "rolldown-plugin-dts": "catalog:",
     "typescript": "catalog:",
-    "vite": "catalog:",
     "vitest": "catalog:"
   },
   "peerDependencies": {
     "rolldown": "*"
   },
-  "packageManager": "pnpm@11.9.0"
+  "packageManager": "pnpm@11.10.0"
 }
