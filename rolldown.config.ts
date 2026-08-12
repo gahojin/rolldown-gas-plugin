@@ -8,6 +8,10 @@ export default defineConfig([
     external: ['rolldown'],
     platform: 'node',
     output: [{ dir: 'dist', format: 'es', sourcemap: true, cleanDir: true, comments: { annotation: true, jsdoc: false, legal: true } }],
-    plugins: [dts()],
+    plugins: [
+      dts({
+        generator: 'oxc',
+      }),
+    ],
   },
 ])

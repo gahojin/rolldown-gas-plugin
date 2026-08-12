@@ -5,16 +5,18 @@ packages:
 dedupePeers: true
 
 catalog:
-  rolldown: 1.2.0
-  rolldown-plugin-dts: 0.27.14
+  rolldown: 1.2.2
+  rolldown-plugin-dts: 0.28.0
   typescript: 7.0.2
   vitest: &vitest_ver 4.1.10
-  '@biomejs/biome': 2.5.5
+  '@biomejs/biome': 2.5.7
   '@fast-check/vitest': 0.4.1
-  '@types/node': 26.1.1
+  '@types/node': 26.1.2
   '@vitest/coverage-v8': *vitest_ver
 
 overrides:
+  # CVE-2026-67213
+  nanoid: ^3.3.17
   rolldown: 'catalog:'
 
 # リリースから一定時間経過していないか、信頼性低下したパッケージはインストールしない

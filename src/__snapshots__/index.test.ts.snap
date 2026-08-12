@@ -7,7 +7,6 @@ function main3() {}
 var a = (function(exports) {
 
 Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-
 //#region src/fixtures/echo.ts
 	const echo = (message) => message;
 	const main3 = () => {
@@ -43,7 +42,6 @@ function main3() {}
 var _ = (function(exports) {
 
 Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-
 //#region src/fixtures/echo.ts
 	const echo = (message) => message;
 	const main3 = () => {
