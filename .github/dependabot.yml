@@ -21,6 +21,6 @@ updates:
       - dependency-name: "@types/node"
         update-types: ["version-update:semver-major"]
     schedule:
-      interval: "monthly"
+      interval: "weekly"
     cooldown:
       default-days: 7
