@@ -5,6 +5,10 @@ on:
     tags:
       - 'v*.*.*'
 
+env:
+  # minimumPackageAge制御はpnpm側で行う
+  SAFE_CHAIN_MINIMUM_PACKAGE_AGE_HOURS: 0
+
 permissions: {}
 
 jobs:
@@ -19,7 +23,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [26]
+        node-version: ['26']
 
     steps:
       - name: Checkout
@@ -28,19 +32,12 @@ jobs:
           persist-credentials: false
 
       - name: Install pnpm
-        uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
+        uses: pnpm/setup@84cb39b217b10273981911c288cd62326dc7c6d2 # v2.0.2
         with:
-          run_install: false
+          runtime: node@${{ matrix.node-version }}
           # pnpmキャッシュを使用しない。キャッシュが汚染されるとそれがリリースされる可能性がある
           cache: false
-  
-      - name: Install Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-        with:
-          node-version: ${{ matrix.node-version }}
-          package-manager-cache: false
-          registry-url: 'https://registry.npmjs.org/'
-          scope: '@gahojin-inc'
+          install: false
 
       - name: Setup safe-chain
         run: curl -fsSL https://github.com/AikidoSec/safe-chain/releases/latest/download/install-safe-chain.sh | sh -s -- --ci
