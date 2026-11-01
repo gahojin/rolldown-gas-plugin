@@ -32,7 +32,7 @@ jobs:
           persist-credentials: false
 
       - name: Install pnpm
-        uses: pnpm/setup@fbda4c85fc2e1e08721cd8763afea8f48d60f024 # v3.0.0
+        uses: pnpm/setup@fa36a5ef7dcdefc3a7cb25655c122e00cf6e636e # v3.1.2
         with:
           runtime: node@${{ matrix.node-version }}
           # pnpmキャッシュを使用しない。キャッシュが汚染されるとそれがリリースされる可能性がある
