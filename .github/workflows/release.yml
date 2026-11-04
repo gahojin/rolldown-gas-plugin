@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     tags:
-      - 'v*.*.*'
+      - "v*.*.*"
 
 env:
   # minimumPackageAge制御はpnpm側で行う
@@ -23,7 +23,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: ['26']
+        node-version: ["26"]
 
     steps:
       - name: Checkout

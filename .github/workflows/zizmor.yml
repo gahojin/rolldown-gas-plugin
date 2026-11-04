@@ -3,7 +3,7 @@ name: GitHub Actions Security Analysis with zizmor 🌈
 on:
   pull_request:
   push:
-    branches: ['main']
+    branches: ["main"]
 
 permissions: {}
 
