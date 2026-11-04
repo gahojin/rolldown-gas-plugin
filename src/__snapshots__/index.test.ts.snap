@@ -17,14 +17,13 @@ function main3() {}
 var _ = (function(exports) {
 
 Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-//#region src/fixtures/echo.ts
+// src/fixtures/echo.ts
 	const echo = (message) => message;
 	const main3 = () => {
 		console.log(echo("hello world."));
 	};
 
-//#endregion
-//#region src/fixtures/main.ts
+// src/fixtures/main.ts
 	const plus = (x, y) => x + y;
 	const minus = (x, y) => x - y;
 	const main1 = () => {
@@ -34,7 +33,6 @@ Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
 		console.log(echo(\`3 - 1 = \${minus(3, 1)}\`));
 	};
 
-//#endregion
 exports.main1 = main1;
 exports.main2 = main2;
 exports.main3 = main3;
@@ -52,14 +50,13 @@ function main3() {}
 var a = (function(exports) {
 
 Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-//#region src/fixtures/echo.ts
+// src/fixtures/echo.ts
 	const echo = (message) => message;
 	const main3 = () => {
 		console.log(echo("hello world."));
 	};
 
-//#endregion
-//#region src/fixtures/main.ts
+// src/fixtures/main.ts
 	const plus = (x, y) => x + y;
 	const minus = (x, y) => x - y;
 	const main1 = () => {
@@ -69,7 +66,6 @@ Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
 		console.log(echo(\`3 - 1 = \${minus(3, 1)}\`));
 	};
 
-//#endregion
 exports.main1 = main1;
 exports.main2 = main2;
 exports.main3 = main3;
